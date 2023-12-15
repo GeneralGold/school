@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <style>
+  @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@600&display=swap');
+    </style>
+    <link rel="icon" href="https://modernia.co/watch/icon.png">
+    <title>Modernia Video</title>
+
+
+  </head>
+  <body>
+  <img src="https://modernia.co/watch/icon.png" style="float: left; width: 70px; padding: 4px 0; margin-left: 10px" />
+    <div class="heading">
+    <h>Modernia Slides</h>
+    </div>
+    <div>
+        <section class="video-player-wrapper">
+              <iframe src="" width="1190px" height="720px" frameborder="0" allowfullscreen="true" mozallowfullscreen="true">This is an embedded <a target="_blank" href="https://office.com">Microsoft Office</a> presentation, powered by <a target="_blank" href="https://office.com/webapps">Office</a>.</iframe>
+        </section>
+    </div>
+    <section class="video-title">
+        <h3 id="editableTitle" class="title">Probably a really cool presentation, idk</h3>
+    </section>
+      </body>
+
+        <script>
+
+
+       function GetURLParameter(sParam)
+{
+    var sPageURL = window.location.search.substring(1);
+    var sURLVariables = sPageURL.split('&');
+    for (var i = 0; i < sURLVariables.length; i++)
+    {
+        var sParameterName = sURLVariables[i].split('=');
+        if (sParameterName[0] == sParam)
+        {
+            return sParameterName[1];
+        }
+    }
+};
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Your script code here
+    var moderniaTitle = "(please reload page)";
+fetch("https://school.modernia.co/presentationinfo/" + GetURLParameter("p") + ".json")
+    .then(response => response.json())
+    .then(data => {
+        moderniaTitle = data.pptxTitle; // Remove the 'var' keyword here
+        moderniaPresLink = data.pptxLink;
+        console.log(data.pptxTitle);
+        console.log(data.pptxLink);
+        document.title = moderniaTitle + " - Modernia Slides";
+        document.getElementById("editableTitle").innerHTML = moderniaTitle;
+        var newvid = document.getElementById("presentationURL");
+        var source = moderniaPresLink;
+        newvid.src = source;
+
+        // No need for document.getElementById("moderniaAudio").load();
+    });
+
+});
+
+
+
+    </script>
+
+
+  <style>
+  body {
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        padding: 5px 0;
+        text-align: center;
+        background: #009090;
+        color: #fff;
+    }
+
+    header h1 {
+        font-size: 40px;
+    }
+
+    .material-symbols-outlined {
+        font-variation-settings:
+            'FILL' 0,
+            'wght' 500,
+            'GRAD' 50,
+            'opsz' 48
+    }
+
+    .icon {
+        font-size: 30px;
+        color: #fff;
+    }
+
+    .icon-size {
+        width: 30px;
+        height: 25px;
+        overflow: visible;
+    }
+
+    .video-title {
+        margin-top: 0px;
+        margin-left: 40px;
+        margin-bottom: 90px;
+        font-family: 'Open Sans', sans-serif;
+        color: black;
+    }
+    .video-player-wrapper {
+        margin-top: 20px;
+        margin-left: 40px;
+        margin-bottom: 5px;
+        /*  padding-top: 56.25%; /* 16:9 Aspect Ratio (divide 9 by 16 = 0.5625)  */
+    }
+
+    /* general styles */
+
+    .flex {
+        display: flex;
+    }
+
+    .flex-col {
+        flex-direction: column;
+    }
+
+    .items-center {
+        align-items: center;
+    }
+
+    .flex-center {
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+
+    .justify-btw {
+        justify-content: space-between;
+    }
+
+    .justify-ard {
+        justify-content: space-around;
+    }
+
+    .justify-end {
+        justify-content: flex-end;
+    }
+
+    .justify-start {
+        justify-content: flex-start;
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .mt-10 {
+        margin-top: 10px;
+    }
+
+    .ms-10 {
+        margin-left: 10px;
+    }
+
+    .me-10 {
+        margin-right: 10px;
+    }
+
+    .grayed-out {
+        color: gray;
+    }
+
+    .heading {
+    padding: 10px;
+    text-align: center;
+    background: #15111a;
+    color: white;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    }
+
+  </style>
+</html>
