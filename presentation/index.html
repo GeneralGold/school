@@ -59,7 +59,7 @@ fetch("https://school.modernia.co/presentationinfo/" + GetURLParameter("p") + ".
         var newvid = document.getElementById("presentationURL");
         var source = moderniaPresLink;
         newvid.src = source;
-
+document.getElementById('presentationURL').src = document.getElementById('presentationURL').src;
         // No need for document.getElementById("moderniaAudio").load();
     });
 
